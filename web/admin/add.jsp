@@ -59,7 +59,7 @@
         <div style="margin-top: 100px">
             <button class="am-btn am-btn-default" type="button" id="add" style="margin-left: 40px">添加</button>
             &nbsp;&nbsp;&nbsp;&nbsp;
-            <button class="am-btn am-btn-default" type="button" id="reset" style="margin-left: 50px">重置</button>
+            <button class="am-btn am-btn-default" type="button" id="reset" style="margin-left: 50px" onclick="window.location.href = '${ctx }/admin/add.jsp'">重置</button>
         </div>
 		</form>
    </div>
@@ -71,7 +71,6 @@
 <script>
 
     $("#add").click(function () {
-        //让表单提交 GoodsAddServlet
         //获取表单  让其提交
         $("#add_form").submit();
     });

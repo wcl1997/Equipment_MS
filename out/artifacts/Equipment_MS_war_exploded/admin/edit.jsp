@@ -62,7 +62,7 @@
             <div style="margin-top: 100px">
                 <button class="am-btn am-btn-default" type="button" id="edit" style="margin-left: 40px">更新</button>
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                <button class="am-btn am-btn-default" type="button" id="reset" style="margin-left: 50px">重置</button>
+                <button class="am-btn am-btn-default" type="button" id="reset" style="margin-left: 50px" onclick="window.location.href = '${ctx }/admin/edit.jsp'">重置</button>
             </div>
 		</form>
    </div>

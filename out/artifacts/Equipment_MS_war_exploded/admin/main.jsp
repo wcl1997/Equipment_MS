@@ -83,7 +83,7 @@
 		</c:forEach>
 		
 		<!--分页-->
-		<div id="page" class="page_div">***</div>
+		<div id="page" class="page_div"></div>
 	</div>
 
 	<script src="${ctx }/admin/js/jquery.min.js"></script>

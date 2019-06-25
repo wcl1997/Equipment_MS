@@ -161,6 +161,8 @@ public class EquipmentServlet extends BaseServlet {
                 return "admin/main2.jsp";
             }else if (admin.getType().equals("equit_manager")){
                 return "admin/main.jsp";
+            }else if (admin.getType().equals("buyer_manager")){
+                return "admin/main3.jsp";
             }
 
         } catch (SQLException e) {
@@ -186,4 +188,5 @@ public class EquipmentServlet extends BaseServlet {
         }
         return null;
     }
+
 }

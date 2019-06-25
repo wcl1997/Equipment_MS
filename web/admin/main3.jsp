@@ -22,7 +22,7 @@
 <div class="main_top">
     <div class="am-cf am-padding am-padding-bottom-0">
         <div class="am-fl am-cf">
-            <strong class="am-text-primary am-text-lg">欢迎访客来访</strong><small></small>
+            <strong class="am-text-primary am-text-lg">采购员</strong><small></small>
         </div>
     </div>
     <hr>
@@ -49,7 +49,7 @@
         <li>设备名称</li>
         <li>设备状态</li>
         <li>生产厂家</li>
-        <li>访客留言</li>
+        <li>设备建议</li>
     </ul>
 
 

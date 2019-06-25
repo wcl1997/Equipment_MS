@@ -54,23 +54,23 @@
         }
 
         ul li:nth-child(1) a i{
-            background: url("images/category_icon.png") no-repeat;
+            background: url("images/admin_icon.png") no-repeat;
         }
         ul li:nth-child(2) a i{
             background: url("images/goods_icon.png") no-repeat;
         }
         ul li:nth-child(3) a i{
-            background: url("images/admin_icon.png") no-repeat;
+            background: url("images/category_icon.png") no-repeat;
         }
 
         ul li:nth-child(1) a:hover i{
-            background: url("images/category_hover.png") no-repeat;
+            background: url("images/admin_hover.png") no-repeat;
         }
         ul li:nth-child(2) a:hover i{
             background: url("images/goods_hover.png") no-repeat;
         }
         ul li:nth-child(3) a:hover i{
-            background: url("images/admin_hover.png") no-repeat;
+            background: url("images/category_hover.png") no-repeat;
         }
 
 
@@ -81,7 +81,8 @@
 <body style="background:#283643;">
 
 <ul>
-    <li><a href="category.jsp" target="mainFrame"><i></i>申请租借</a></li>
+    <li><a href="${pageContext.request.contextPath }/LoanServlet?action=getListLoans" target="mainFrame"><i></i>我的信息</a></li>
+    <li><a href="${pageContext.request.contextPath }/admin/loan.jsp" target="mainFrame"><i></i>申请租借</a></li>
     <li><a href="${pageContext.request.contextPath }/EquipmentServlet?action=getPageData&currentPage=1" target="mainFrame"><i></i>设备查看</a></li>
 </ul>
 

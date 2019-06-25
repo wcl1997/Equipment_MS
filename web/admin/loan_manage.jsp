@@ -22,21 +22,24 @@
 <div class="main_top">
     <div class="am-cf am-padding am-padding-bottom-0">
         <div class="am-fl am-cf">
-            <strong class="am-text-primary am-text-lg">欢迎访客来访</strong><small></small>
+            <strong class="am-text-primary am-text-lg">申请处理</strong><small></small>
         </div>
     </div>
     <hr>
     <div class="am-g">
-        <div class="am-u-sm-12 am-u-md-3"></div>
-    <div class="am-u-sm-12 am-u-md-3">
+        <div class="am-u-sm-12 am-u-md-6">
 
-            <form action="${ctx }/EquipmentServlet?action=getEquipment" method="post" style="background: none; height: 50px;">
+            </div>
+        </div>
+        <div class="am-u-sm-12 am-u-md-3"></div>
+        <div class="am-u-sm-12 am-u-md-3">
+            <%--<form action="${ctx }/EquipmentServlet?action=getEquipment" method="post" style="background: none; height: 50px;">
                 <input type="text" class="am-form-field" id="input_search" style="height: 35px;width: 200px" name="search">
                 <span class="am-input-group-btn">
 						<button class="am-btn am-btn-default" type="submit" style="margin-top: 7px"
-                                id="input_search_btn">查找</button>
+                                id="input_search_btn">搜索</button>
 					</span>
-            </form>
+            </form>--%>
         </div>
     </div>
 
@@ -47,46 +50,37 @@
         <li>序号</li>
         <li>设备编号</li>
         <li>设备名称</li>
-        <li>设备状态</li>
-        <li>生产厂家</li>
-        <li>访客留言</li>
+        <li>设备用途</li>
+        <li>租借时间</li>
+        <li>联系方式</li>
+        <li>状态</li>
+        <li>同意</li>
+        <li>驳回</li>
     </ul>
 
 
-    <c:forEach items="${page.equipmentList }" var="equipment" varStatus="status">
+    <c:forEach items="${allLoans }" var="loan" varStatus="status">
 
         <ul class="list_goods_ul">
             <li>${status.index + 1}</li>
-            <li>${equipment.equip_id} </li>
-            <li>${equipment.equip_name }</li>
-            <li>${equipment.equip_state }</li>
-            <li>${equipment.equip_manufacturer }</li>
-            <li><a href="${ctx }/admin/message.jsp"><img class="img_icon" src="${ctx }/admin/images/edit_icon.png" ></a></li>
+            <li>${loan.loan_eid} </li>
+            <li>${loan.loan_ename} </li>
+            <li>${loan.loan_use }</li>
+            <li>${loan.loan_time }</li>
+            <li>${loan.loan_tel }</li>
+            <li><span style="color: grey">${loan.loan_state }</span></li>
+            <li><a href="${ctx }/LoanServlet?action=agree&id=${loan.id}" style="color: #00CC99">同意申请</a></li>
+            <li><a href="${ctx }/LoanServlet?action=disAgree&id=${loan.id}" style="color: #FF0066">驳回申请</a></li>
         </ul>
     </c:forEach>
 
-    <!--分页-->
-   <div id="page" class="page_div">   </div>
 </div>
 
 <script src="${ctx }/admin/js/jquery.min.js"></script>
-<script type="text/javascript" src="${ctx }/admin/js/paging.js"></script>
 <script>
-    //分页
-    $("#page").paging({
-        pageNo:${page.currentPage},
-        totalPage: ${page.totalPage},
-        totalSize: ${page.totalCount},
-        callback: function(num) {
-            // alert(num);
-            $(window).attr('location',"${ctx}/EquipmentServlet?action=getPageData&currentPage="+num);
-        }
-    });
-
     $("#add").click(function () {
-        $(window).attr('location',"${ctx}/admin/add.jsp");
+        $(window).attr('location',"${ctx}/admin/loan.jsp");
     });
-
 </script>
 
 </body>

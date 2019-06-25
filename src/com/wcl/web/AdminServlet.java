@@ -54,7 +54,12 @@ public class AdminServlet extends HttpServlet {
 				Admin admin = adminService.login(name, pwd, type);
 				HttpSession session = request.getSession();
 				session.setAttribute("admin", admin);
-				response.sendRedirect(request.getContextPath() + "/admin/admin_index.jsp");
+				if (type.equals("equit_manager")){
+					response.sendRedirect(request.getContextPath() + "/admin/admin_index.jsp");
+				} else if (type.equals("buyer_manager")){
+					response.sendRedirect(request.getContextPath() + "/admin/admin_index3.jsp");
+				}
+
 			} catch (Exception e) {
 				if (e.getMessage().equals("用户名或密码错误")) {
 					request.setAttribute("err", e.getMessage());
