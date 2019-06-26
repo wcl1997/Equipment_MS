@@ -80,9 +80,9 @@
 <body style="background:#283643;">
 
 <ul>
-    <li><a href="${pageContext.request.contextPath }/PurchaseServlet?action=getListPurchases" target="mainFrame"><i></i>我的信息</a></li>
+    <li><a href="${pageContext.request.contextPath }/PurchaseServlet?action=getListPurchases2" target="mainFrame"><i></i>我的信息</a></li>
     <li><a href="${pageContext.request.contextPath }/admin/purchase.jsp" target="mainFrame"><i></i>采购申请</a></li>
-    <li><a href="${pageContext.request.contextPath }/EquipmentServlet?action=getPageData&currentPage=1" target="mainFrame"><i></i>设备查看</a></li>
+    <li><a href="${pageContext.request.contextPath }/EquipmentServlet?action=getPageData3&currentPage=1" target="mainFrame"><i></i>设备查看</a></li>
 </ul>
 
 </body>

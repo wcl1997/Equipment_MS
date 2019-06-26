@@ -14,6 +14,12 @@ public class PurchaseService {
         return allPurchases;
     }
 
+    //根据状态查找
+    public List<Purchase> getPurchasesByState() throws SQLException {
+        List<Purchase> allPurchases = purchaseDao.getPurchaseByState();
+        return allPurchases;
+    }
+
     public Purchase getPurchaseById(String id) throws SQLException {
         Purchase purchase = purchaseDao.getPurchaseByEid(id);
         return purchase;

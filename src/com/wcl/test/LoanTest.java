@@ -53,12 +53,12 @@ public class LoanTest {
     @Test
     public void updateLoan() throws Exception {
         Loan loan = new Loan();
-        loan.setId(2);
-        loan.setLoan_eid("10011");
+        loan.setId(6);
+        loan.setLoan_eid("10015");
         loan.setLoan_use("学习");
         loan.setLoan_time("8天");
         loan.setLoan_tel(15226038452L);
-        loanDao.updateLoan(loan);
+        new LoanService().updateLoan(loan);
     }
 
     @Test

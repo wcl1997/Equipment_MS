@@ -34,38 +34,20 @@ public class LoanServlet extends BaseServlet {
             LoanService loanService = new LoanService();
             loanService.addLoan(loan);
             //跳转列表
-            return "/LoanServlet?action=getListLoans";
+            return "/LoanServlet?action=getListLoans2";
         }  catch (Exception e) {
             if (e.getMessage().equals("该设备已被申请")) {
+                request.setAttribute("err", e.getMessage());
+                request.getRequestDispatcher("/admin/loan.jsp").forward(request, response);
+            }else if (e.getMessage().equals("该设备不存在！")){
+                request.setAttribute("err", e.getMessage());
+                request.getRequestDispatcher("/admin/loan.jsp").forward(request, response);
+            } else if (e.getMessage().equals("设备编号不可为空！")){
                 request.setAttribute("err", e.getMessage());
                 request.getRequestDispatcher("/admin/loan.jsp").forward(request, response);
             } else {
                 e.printStackTrace();
             }
-        }
-        return null;
-    }
-
-    // 获取所有
-    public String getListLoans(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        // 1.调用服务层
-        LoanService loanService = new LoanService();
-        try {
-            List<Loan> allLoans = loanService.getAllLoans();
-            // 对集合进行反转
-            Collections.reverse(allLoans);
-            // 把数据写到request域
-            request.setAttribute("allLoans", allLoans);
-            // 转发
-            Admin admin = (Admin) request.getSession().getAttribute("admin");
-            if (admin.getType().equals("user")){
-                return "admin/user_message.jsp";
-            }else if (admin.getType().equals("equit_manager")){
-                return "admin/loan_manage.jsp";
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
         return null;
     }
@@ -100,7 +82,7 @@ public class LoanServlet extends BaseServlet {
             BeanUtils.populate(loan, parameterMap);
             LoanService loanService = new LoanService();
             loanService.updateLoan(loan);
-            return "/LoanServlet?action=getListLoans";
+            return "/LoanServlet?action=getListLoans2";
         } catch (Exception e) {
             if (e.getMessage().equals("该设备已被申请,无法申请！")) {
                 request.setAttribute("err", e.getMessage());
@@ -121,8 +103,52 @@ public class LoanServlet extends BaseServlet {
         LoanService loanService = new LoanService();
         try {
             loanService.delLoan(id);
-            return "/LoanServlet?action=getListLoans";
+            return "/LoanServlet?action=getListLoans2";
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    // 获取所有  管理员
+    public String getListLoans(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        // 1.调用服务层
+        LoanService loanService = new LoanService();
+        try {
+            List<Loan> allLoans = loanService.getLoansByState();
+            // 对集合进行反转
+//            Collections.reverse(allLoans);
+            // 把数据写到request域
+            request.setAttribute("allLoans", allLoans);
+            // 转发
+            /*Admin admin = (Admin) request.getSession().getAttribute("admin");
+            if (admin.getType().equals("user")){
+                return "admin/user_message.jsp";
+            }else if (admin.getType().equals("equit_manager")){
+                return "admin/loan_manage.jsp";
+            }*/
+            return "admin/loan_manage.jsp";
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    // 获取所有  访客
+    public String getListLoans2(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        // 1.调用服务层
+        LoanService loanService = new LoanService();
+        try {
+            List<Loan> allLoans = loanService.getAllLoans();
+            // 对集合进行反转
+//            Collections.reverse(allLoans);
+            // 把数据写到request域
+            request.setAttribute("allLoans", allLoans);
+            // 转发
+            return "admin/user_message.jsp";
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;

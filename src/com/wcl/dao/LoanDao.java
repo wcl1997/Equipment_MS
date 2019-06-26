@@ -19,6 +19,13 @@ public class LoanDao {
         return loans;
     }
 
+    //根据状态查找
+    public List<Loan> getLoansByState() throws SQLException {
+        String sql = "select * from loan where loan_state = '待审核'";
+        List<Loan> loans = qr.query(sql, new BeanListHandler<Loan>(Loan.class));
+        return loans;
+    }
+
     //根据设备编号查询
     public Loan getLoanByEid(String loan_eid) throws SQLException {
         String sql = "select * from loan where loan_eid = ?";
@@ -48,9 +55,9 @@ public class LoanDao {
 
     //修改
     public void updateLoan(Loan loan) throws Exception {
-        String sql = "update loan set loan_eid=?,loan_ename=?,loan_use=?,loan_time=?,loan_tel=? where id=?";
+        String sql = "update loan set loan_eid=?,loan_ename=?,loan_use=?,loan_time=?,loan_tel=?,loan_state=? where id=?";
         Equipment equipment = new EquipmentDao().getEquipmentWithEid(loan.getLoan_eid());
-        qr.update(sql,loan.getLoan_eid(),equipment.getEquip_name(),loan.getLoan_use(),loan.getLoan_time(),loan.getLoan_tel(),loan.getId());
+        qr.update(sql,loan.getLoan_eid(),equipment.getEquip_name(),loan.getLoan_use(),loan.getLoan_time(),loan.getLoan_tel(),"待审核",loan.getId());
     }
 
     //更改状态

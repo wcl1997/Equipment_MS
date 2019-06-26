@@ -20,6 +20,13 @@ public class PurchaseDao {
         return purchases;
     }
 
+    //根据状态查找
+    public List<Purchase> getPurchaseByState() throws SQLException {
+        String sql = "select * from purchase where p_state = '待审核'";
+        List<Purchase> purchases = qr.query(sql, new BeanListHandler<Purchase>(Purchase.class));
+        return purchases;
+    }
+
     //根据id查询
     public Purchase getPurchaseByEid(String id) throws SQLException {
         String sql = "select * from purchase where id = ?";
@@ -39,10 +46,10 @@ public class PurchaseDao {
         qr.update(sql,id);
     }
 
-    //修改
+    //修改 并将状态初始化
     public void updatePurchase(Purchase purchase) throws Exception {
-        String sql = "update purchase set p_ename=?,p_price=?,p_manufacture=?,p_amount=? where id=?";
-        qr.update(sql,purchase.getP_ename(),purchase.getP_price(),purchase.getP_manufacture(),purchase.getP_amount(),purchase.getId());
+        String sql = "update purchase set p_ename=?,p_price=?,p_manufacture=?,p_amount=?,p_state=? where id=?";
+        qr.update(sql,purchase.getP_ename(),purchase.getP_price(),purchase.getP_manufacture(),purchase.getP_amount(),"待审核",purchase.getId());
     }
 
     //修改状态

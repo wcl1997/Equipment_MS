@@ -81,9 +81,9 @@
 <body style="background:#283643;">
 
 <ul>
-    <li><a href="${pageContext.request.contextPath }/LoanServlet?action=getListLoans" target="mainFrame"><i></i>我的信息</a></li>
+    <li><a href="${pageContext.request.contextPath }/LoanServlet?action=getListLoans2" target="mainFrame"><i></i>我的信息</a></li>
     <li><a href="${pageContext.request.contextPath }/admin/loan.jsp" target="mainFrame"><i></i>申请租借</a></li>
-    <li><a href="${pageContext.request.contextPath }/EquipmentServlet?action=getPageData&currentPage=1" target="mainFrame"><i></i>设备查看</a></li>
+    <li><a href="${pageContext.request.contextPath }/EquipmentServlet?action=getPageData2&currentPage=1" target="mainFrame"><i></i>设备查看</a></li>
 </ul>
 
 </body>

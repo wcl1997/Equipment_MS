@@ -33,33 +33,9 @@ public class PurchaseServlet extends BaseServlet {
             PurchaseService purchaseService = new PurchaseService();
             purchaseService.addPurchase(purchase);
             //跳转列表
-            return "/PurchaseServlet?action=getListPurchases";
+            return "/PurchaseServlet?action=getListPurchases2";
         }  catch (Exception e) {
                 e.printStackTrace();
-        }
-        return null;
-    }
-
-    // 获取所有
-    public String getListPurchases(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        // 1.调用服务层
-        PurchaseService purchaseService = new PurchaseService();
-        try {
-            List<Purchase> allPurchases = purchaseService.getAllPurchases();
-            // 对集合进行反转
-//            Collections.reverse(allPurchases);
-            // 把数据写到request域
-            request.setAttribute("allPurchases", allPurchases);
-            // 转发
-            Admin admin = (Admin) request.getSession().getAttribute("admin");
-            if (admin.getType().equals("buyer_manager")){
-                return "admin/buyer_message.jsp";
-            }else if (admin.getType().equals("equit_manager")){
-                return "admin/purchase_manage.jsp";
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
         return null;
     }
@@ -95,7 +71,7 @@ public class PurchaseServlet extends BaseServlet {
             System.out.println(purchase);
             PurchaseService purchaseService = new PurchaseService();
             purchaseService.updatePurchase(purchase);
-            return "/PurchaseServlet?action=getListPurchases";
+            return "/PurchaseServlet?action=getListPurchases2";
         } catch (Exception e) {
                 e.printStackTrace();
         }
@@ -111,8 +87,52 @@ public class PurchaseServlet extends BaseServlet {
         PurchaseService purchaseService = new PurchaseService();
         try {
             purchaseService.delPurchase(id);
-            return "/PurchaseServlet?action=getListPurchases";
+            return "/PurchaseServlet?action=getListPurchases2";
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    // 获取所有 管理员
+    public String getListPurchases(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        // 1.调用服务层
+        PurchaseService purchaseService = new PurchaseService();
+        try {
+            List<Purchase> allPurchases = purchaseService.getPurchasesByState();
+            // 对集合进行反转
+//            Collections.reverse(allPurchases);
+            // 把数据写到request域
+            request.setAttribute("allPurchases", allPurchases);
+            // 转发
+            /*Admin admin = (Admin) request.getSession().getAttribute("admin");
+            if (admin.getType().equals("buyer_manager")){
+                return "admin/buyer_message.jsp";
+            }else if (admin.getType().equals("equit_manager")){
+                return "admin/purchase_manage.jsp";
+            }*/
+            return "admin/purchase_manage.jsp";
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    // 获取所有 采购员
+    public String getListPurchases2(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        // 1.调用服务层
+        PurchaseService purchaseService = new PurchaseService();
+        try {
+            List<Purchase> allPurchases = purchaseService.getAllPurchases();
+            // 对集合进行反转
+//            Collections.reverse(allPurchases);
+            // 把数据写到request域
+            request.setAttribute("allPurchases", allPurchases);
+            // 转发
+            return "admin/buyer_message.jsp";
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;

@@ -146,6 +146,7 @@ public class EquipmentServlet extends BaseServlet {
         return null;
     }
 
+    //设备管理员使用
     public String getPageData(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -154,17 +155,16 @@ public class EquipmentServlet extends BaseServlet {
             EquipmentService equipmentService = new EquipmentService();
             Page page = equipmentService.getPage(Integer.parseInt(currentPage));
             request.setAttribute("page",page);
-//            System.out.println(page);
 
-            Admin admin = (Admin) request.getSession().getAttribute("admin");
+            /*Admin admin = (Admin) request.getSession().getAttribute("admin");
             if (admin.getType().equals("user")){
                 return "admin/main2.jsp";
             }else if (admin.getType().equals("equit_manager")){
                 return "admin/main.jsp";
             }else if (admin.getType().equals("buyer_manager")){
                 return "admin/main3.jsp";
-            }
-
+            }*/
+            return "admin/main.jsp";
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -180,9 +180,23 @@ public class EquipmentServlet extends BaseServlet {
             EquipmentService equipmentService = new EquipmentService();
             Page page = equipmentService.getPage(Integer.parseInt(currentPage));
             request.setAttribute("page",page);
-//            System.out.println(page);
-
             return "admin/main2.jsp";
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    //采购员使用
+    public String getPageData3(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        try {
+            String currentPage = request.getParameter("currentPage");
+            EquipmentService equipmentService = new EquipmentService();
+            Page page = equipmentService.getPage(Integer.parseInt(currentPage));
+            request.setAttribute("page",page);
+            return "admin/main3.jsp";
         } catch (SQLException e) {
             e.printStackTrace();
         }
