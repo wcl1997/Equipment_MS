@@ -51,10 +51,10 @@
     <div class="top_left">
         高校设备管理系统
     </div>
-    <div class="h_top_right">
+    <div class="h_top_right" style="margin-right: 40px">
         <img src="images/user_icon.png" alt="">
         <!-- 从session域 当中取出数据 -->
-        <span type="color:red">用户名:${admin.username }</span>
+        <span style="color: #fffe07;float: left;text-align: center">${userType}：${admin.username }</span>
     </div>
 
 </div>

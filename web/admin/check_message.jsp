@@ -22,7 +22,7 @@
 <div class="main_top">
     <div class="am-cf am-padding am-padding-bottom-0">
         <div class="am-fl am-cf">
-            <strong class="am-text-primary am-text-lg">欢迎访客来访</strong><small></small>
+            <strong class="am-text-primary am-text-lg">分析员</strong><small></small>
         </div>
     </div>
     <hr>
@@ -30,13 +30,6 @@
         <div class="am-u-sm-12 am-u-md-3"></div>
     <div class="am-u-sm-12 am-u-md-3">
 
-            <form action="${ctx }/EquipmentServlet?action=getEquipment" method="post" style="background: none; height: 50px;">
-                <input type="text" class="am-form-field" id="input_search" style="height: 35px;width: 200px" name="search">
-                <span class="am-input-group-btn">
-						<button class="am-btn am-btn-default" type="submit" style="margin-top: 7px"
-                                id="input_search_btn">查找</button>
-					</span>
-            </form>
         </div>
     </div>
 
@@ -47,21 +40,19 @@
         <li>序号</li>
         <li>设备编号</li>
         <li>设备名称</li>
-<%--        <li>设备状态</li>--%>
+        <li>设备状态</li>
         <li>生产厂家</li>
-        <li>访客留言</li>
     </ul>
 
 
-    <c:forEach items="${page.equipmentList }" var="equipment" varStatus="status">
+    <c:forEach items="${equipments }" var="equipment" varStatus="status">
 
         <ul class="list_goods_ul">
             <li>${status.index + 1}</li>
             <li>${equipment.equip_id} </li>
             <li>${equipment.equip_name }</li>
-<%--            <li>${equipment.equip_state }</li>--%>
+            <li>${equipment.equip_state }</li>
             <li>${equipment.equip_manufacturer }</li>
-            <li><a href="${ctx }/admin/message.jsp"><img class="img_icon" src="${ctx }/admin/images/edit_icon.png" ></a></li>
         </ul>
     </c:forEach>
 

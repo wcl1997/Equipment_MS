@@ -63,6 +63,9 @@
             background: url("images/goods_icon.png") no-repeat;
         }
         ul li:nth-child(4) a i{
+            background: url("images/goods_icon.png") no-repeat;
+        }
+        ul li:nth-child(5) a i{
             background: url("images/admin_icon.png") no-repeat;
         }
 
@@ -76,6 +79,9 @@
             background: url("images/goods_hover.png") no-repeat;
         }
         ul li:nth-child(4) a:hover i{
+            background: url("images/goods_hover.png") no-repeat;
+        }
+        ul li:nth-child(5) a:hover i{
             background: url("images/admin_hover.png") no-repeat;
         }
 
@@ -89,6 +95,7 @@
 <ul>
     <li><a href="${pageContext.request.contextPath }/LoanServlet?action=getListLoans" target="mainFrame"><i></i>租借管理</a></li>
     <li><a href="${pageContext.request.contextPath }/PurchaseServlet?action=getListPurchases" target="mainFrame"><i></i>采购管理</a></li>
+    <li><a href="${pageContext.request.contextPath }/AnalyServlet?action=getEquipmentsByCheckM" target="mainFrame"><i></i>维修报废管理</a></li>
     <li><a href="${pageContext.request.contextPath }/EquipmentServlet?action=getPageData&currentPage=1" target="mainFrame"><i></i>设备管理</a></li>
     <li></i><a href="account.jsp" target="mainFrame"><i></i>用户管理</a></li>
 </ul>

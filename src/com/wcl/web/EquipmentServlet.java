@@ -1,5 +1,6 @@
 package com.wcl.web;
 
+import com.wcl.dao.EquipmentDao;
 import com.wcl.domain.Admin;
 import com.wcl.domain.Equipment;
 import com.wcl.domain.Page;
@@ -36,9 +37,16 @@ public class EquipmentServlet extends BaseServlet {
             equipmentService.addEquipment(equipment);
             //跳转列表，
             return "/EquipmentServlet?action=getPageData&currentPage=1";
-
         }  catch (Exception e) {
-            e.printStackTrace();
+            if (e.getMessage().equals("设备编号不可为空！")){
+                request.setAttribute("err", e.getMessage());
+                request.getRequestDispatcher("/admin/add.jsp").forward(request, response);
+            }else if (e.getMessage().equals("该设备已存在!")){
+                request.setAttribute("err", e.getMessage());
+                request.getRequestDispatcher("/admin/add.jsp").forward(request, response);
+            }else {
+                e.printStackTrace();
+            }
         }
         return null;
     }
@@ -61,7 +69,12 @@ public class EquipmentServlet extends BaseServlet {
             // 5.跳转回main.jsp 列表
             return "/EquipmentServlet?action=getPageData&currentPage=1";
         } catch (Exception e) {
-            e.printStackTrace();
+            if (e.getMessage().equals("该设备已存在，无法修改！")){
+                request.setAttribute("err", e.getMessage());
+                request.getRequestDispatcher("/EquipmentServlet?action=editUI").forward(request, response);
+            }else {
+                e.printStackTrace();
+            }
         }
 
         return null;
@@ -203,4 +216,98 @@ public class EquipmentServlet extends BaseServlet {
         return null;
     }
 
+    //分析员使用
+    public String getEquipmentsByEstate(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        try {
+            List<Equipment> equipments = new EquipmentDao().getEquipmentsByEstate();
+            request.setAttribute("equipments",equipments);
+            return "admin/main4.jsp";
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public String getEquipmentsByCheck(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            List<Equipment> equipments = new EquipmentDao().getEquipmentsByCheck();
+            request.setAttribute("equipments",equipments);
+            return "admin/check_message.jsp";
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    //被驳回
+    public String getEquipmentsByDisAgree(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            List<Equipment> equipments = new EquipmentDao().getEquipmentsByDisAgree();
+            request.setAttribute("equipments",equipments);
+            return "admin/main4.jsp";
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    //维修员查看
+    public String getEquipmentsByRepair(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        try {
+            List<Equipment> equipments = new EquipmentDao().getEquipmentsByRepair();
+            request.setAttribute("equipments",equipments);
+            return "admin/main5.jsp";
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    //维修成功
+    public String repairSuccess(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            String id = request.getParameter("id");
+            EquipmentService equipmentService = new EquipmentService();
+            Equipment equipment = equipmentService.getEquipmentWithId(id);
+            equipment.setEquip_state("正常");
+            equipmentService.updateEquipment(equipment);
+            return "/EquipmentServlet?action=getEquipmentsByRepair";
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    //维修失败
+    public String repairFailed(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            String id = request.getParameter("id");
+            EquipmentService equipmentService = new EquipmentService();
+            Equipment equipment = equipmentService.getEquipmentWithId(id);
+            equipment.setEquip_state("故障");
+            equipmentService.updateEquipment(equipment);
+            return "/EquipmentServlet?action=getEquipmentsByRepair";
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    //养护员查看
+    public String getEquipmentsMaintain(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            List<Equipment> equipments = new EquipmentDao().getEquipmentsMaintain();
+            request.setAttribute("equipments",equipments);
+            return "admin/main6.jsp";
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

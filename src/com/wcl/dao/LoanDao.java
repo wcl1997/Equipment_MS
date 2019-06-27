@@ -26,6 +26,13 @@ public class LoanDao {
         return loans;
     }
 
+    //根据用户查找
+    public List<Loan> getLoansByUser(String user) throws SQLException {
+        String sql = "select * from loan where loan_user = ?";
+        List<Loan> loans = qr.query(sql, new BeanListHandler<Loan>(Loan.class),user);
+        return loans;
+    }
+
     //根据设备编号查询
     public Loan getLoanByEid(String loan_eid) throws SQLException {
         String sql = "select * from loan where loan_eid = ?";
@@ -42,9 +49,9 @@ public class LoanDao {
 
     //增加
     public void addLoan(Loan loan) throws Exception {
-        String sql = "insert into loan(loan_eid,loan_ename,loan_use,loan_time,loan_tel) value (?,?,?,?,?)";
+        String sql = "insert into loan(loan_eid,loan_ename,loan_use,loan_time,loan_tel,loan_user) value (?,?,?,?,?,?)";
         Equipment equipment = new EquipmentDao().getEquipmentWithEid(loan.getLoan_eid());
-        qr.update(sql,loan.getLoan_eid(),equipment.getEquip_name(),loan.getLoan_use(),loan.getLoan_time(),loan.getLoan_tel());
+        qr.update(sql,loan.getLoan_eid(),equipment.getEquip_name(),loan.getLoan_use(),loan.getLoan_time(),loan.getLoan_tel(),loan.getLoan_user());
     }
 
     //删除
@@ -55,9 +62,9 @@ public class LoanDao {
 
     //修改
     public void updateLoan(Loan loan) throws Exception {
-        String sql = "update loan set loan_eid=?,loan_ename=?,loan_use=?,loan_time=?,loan_tel=?,loan_state=? where id=?";
+        String sql = "update loan set loan_eid=?,loan_ename=?,loan_use=?,loan_time=?,loan_tel=?,loan_state=?,loan_user=? where id=?";
         Equipment equipment = new EquipmentDao().getEquipmentWithEid(loan.getLoan_eid());
-        qr.update(sql,loan.getLoan_eid(),equipment.getEquip_name(),loan.getLoan_use(),loan.getLoan_time(),loan.getLoan_tel(),"待审核",loan.getId());
+        qr.update(sql,loan.getLoan_eid(),equipment.getEquip_name(),loan.getLoan_use(),loan.getLoan_time(),loan.getLoan_tel(),"待审核",loan.getLoan_user(),loan.getId());
     }
 
     //更改状态

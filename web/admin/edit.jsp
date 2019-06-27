@@ -24,6 +24,7 @@
 	
     <div class="edit_content">
 		<form action="${ctx }/EquipmentServlet?action=edit" method="post" id="edit_form" style="background: none; width: 700px;">
+            <span style="color:red">${err }</span>
             <input type="text"  name="id" value="${equipment.id }" style="display:none">
 
             <div class="item1">

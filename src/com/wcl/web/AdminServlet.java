@@ -36,6 +36,7 @@ public class AdminServlet extends HttpServlet {
 				//1.把用户保存到session
 				HttpSession session = request.getSession();
 				session.setAttribute("admin", admin);
+				session.setAttribute("userType","访客");
 				response.sendRedirect(request.getContextPath() + "/admin/admin_index2.jsp");
 			} catch (Exception e) {
 				if (e.getMessage().equals("用户名或密码错误")) {
@@ -55,9 +56,20 @@ public class AdminServlet extends HttpServlet {
 				HttpSession session = request.getSession();
 				session.setAttribute("admin", admin);
 				if (type.equals("equit_manager")){
+					session.setAttribute("userType","设备管理员");
 					response.sendRedirect(request.getContextPath() + "/admin/admin_index.jsp");
 				} else if (type.equals("buyer_manager")){
+					session.setAttribute("userType","采购员");
 					response.sendRedirect(request.getContextPath() + "/admin/admin_index3.jsp");
+				} else if (type.equals("analy_manager")){
+					session.setAttribute("userType","分析员");
+					response.sendRedirect(request.getContextPath() + "/admin/admin_index4.jsp");
+				} else if (type.equals("repair_manager")){
+					session.setAttribute("userType","维修员");
+					response.sendRedirect(request.getContextPath() + "/admin/admin_index5.jsp");
+				}else if (type.equals("maintain_manager")){
+					session.setAttribute("userType","养护员");
+					response.sendRedirect(request.getContextPath() + "/admin/admin_index6.jsp");
 				}
 
 			} catch (Exception e) {

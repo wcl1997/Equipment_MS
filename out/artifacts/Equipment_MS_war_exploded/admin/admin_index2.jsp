@@ -31,7 +31,7 @@ scrolling：是否有滚动条
 
         <frame src="${pageContext.request.contextPath }/admin/left2.jsp" name="leftFrame"  scrolling="NO">
 
-        <frame src="${pageContext.request.contextPath }/EquipmentServlet?action=getPageData&currentPage=1" name="mainFrame" >
+        <frame src="${pageContext.request.contextPath }/EquipmentServlet?action=getPageData2&currentPage=1" name="mainFrame" >
 
     </frameset>
 

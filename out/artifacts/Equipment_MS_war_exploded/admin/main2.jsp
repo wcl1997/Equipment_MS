@@ -47,7 +47,7 @@
         <li>序号</li>
         <li>设备编号</li>
         <li>设备名称</li>
-        <li>设备状态</li>
+<%--        <li>设备状态</li>--%>
         <li>生产厂家</li>
         <li>访客留言</li>
     </ul>
@@ -59,7 +59,7 @@
             <li>${status.index + 1}</li>
             <li>${equipment.equip_id} </li>
             <li>${equipment.equip_name }</li>
-            <li>${equipment.equip_state }</li>
+<%--            <li>${equipment.equip_state }</li>--%>
             <li>${equipment.equip_manufacturer }</li>
             <li><a href="${ctx }/admin/message.jsp"><img class="img_icon" src="${ctx }/admin/images/edit_icon.png" ></a></li>
         </ul>

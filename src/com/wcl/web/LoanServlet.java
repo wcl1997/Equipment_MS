@@ -32,6 +32,9 @@ public class LoanServlet extends BaseServlet {
             BeanUtils.populate(loan, parameterMap);
             //调用服务层
             LoanService loanService = new LoanService();
+            //添加用户名
+            Admin admin = (Admin) request.getSession().getAttribute("admin");
+            loan.setLoan_user(admin.getUsername());
             loanService.addLoan(loan);
             //跳转列表
             return "/LoanServlet?action=getListLoans2";
@@ -81,6 +84,9 @@ public class LoanServlet extends BaseServlet {
         try {
             BeanUtils.populate(loan, parameterMap);
             LoanService loanService = new LoanService();
+            //添加用户名
+            Admin admin = (Admin) request.getSession().getAttribute("admin");
+            loan.setLoan_user(admin.getUsername());
             loanService.updateLoan(loan);
             return "/LoanServlet?action=getListLoans2";
         } catch (Exception e) {
@@ -140,8 +146,14 @@ public class LoanServlet extends BaseServlet {
             throws ServletException, IOException {
         // 1.调用服务层
         LoanService loanService = new LoanService();
+       /* Admin admin = (Admin) request.getSession().getAttribute("admin");
+        System.out.println("admin==="+admin);*/
         try {
-            List<Loan> allLoans = loanService.getAllLoans();
+//            List<Loan> allLoans = loanService.getAllLoans();
+
+            //获取用户
+            Admin admin = (Admin) request.getSession().getAttribute("admin");
+            List<Loan> allLoans = loanService.getLoansByUser(admin.getUsername());
             // 对集合进行反转
 //            Collections.reverse(allLoans);
             // 把数据写到request域

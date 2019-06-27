@@ -22,7 +22,16 @@ public class EquipmentService {
 
     public void addEquipment(Equipment equipment) throws Exception {
         //调用dao 插入操作
-        equipmentDao.addEquipment(equipment);
+        if (equipment.getEquip_id() == ""){
+            throw new Exception("设备编号不可为空！");
+        }else {
+            Equipment equipmentWithEid = new EquipmentDao().getEquipmentWithEid(equipment.getEquip_id());
+            if (equipmentWithEid != null){
+                throw new Exception("该设备已存在!");
+            } else {
+                equipmentDao.addEquipment(equipment);
+            }
+        }
     }
 
     public Equipment getEquipmentWithId(String id) throws Exception {
@@ -32,8 +41,17 @@ public class EquipmentService {
     }
 
     public void updateEquipment(Equipment equipment) throws Exception {
-        //调用dao 更新商品
-        equipmentDao.updateEquipment(equipment);
+        //调用dao 更新
+        Integer id = equipment.getId();
+        Equipment equipmentWithId = equipmentDao.getEquipmentWithId(id.toString());
+        Equipment equipmentWithEid = equipmentDao.getEquipmentWithEid(equipment.getEquip_id());
+        if (equipmentWithEid == null){
+            equipmentDao.updateEquipment(equipment);
+        }else if (equipmentWithEid.getEquip_id().equals(equipmentWithId.getEquip_id())){
+            equipmentDao.updateEquipment(equipment);
+        }else {
+            throw new Exception("该设备已存在，无法修改！");
+        }
     }
 
 

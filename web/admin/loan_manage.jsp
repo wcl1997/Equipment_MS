@@ -49,10 +49,11 @@
     <ul class="title_ul">
         <li>序号</li>
         <li>设备编号</li>
-        <li>设备名称</li>
+        <li style="flex:1">设备名称</li>
         <li>设备用途</li>
         <li>租借时间</li>
         <li>联系方式</li>
+        <li>访客</li>
         <li>状态</li>
         <li>同意</li>
         <li>驳回</li>
@@ -64,10 +65,11 @@
         <ul class="list_goods_ul">
             <li>${status.index + 1}</li>
             <li>${loan.loan_eid} </li>
-            <li>${loan.loan_ename} </li>
+            <li style="flex:1">${loan.loan_ename} </li>
             <li>${loan.loan_use }</li>
             <li>${loan.loan_time }</li>
             <li>${loan.loan_tel }</li>
+            <li>${loan.loan_user }</li>
             <li><span style="color: grey">${loan.loan_state }</span></li>
             <li><a href="${ctx }/LoanServlet?action=agree&id=${loan.id}" style="color: #00CC99">同意申请</a></li>
             <li><a href="${ctx }/LoanServlet?action=disAgree&id=${loan.id}" style="color: #FF0066">驳回申请</a></li>

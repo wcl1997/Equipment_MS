@@ -23,7 +23,8 @@
 	
     <div class="edit_content">
 		<form action="${ctx }/EquipmentServlet?action=add" method="post" id="add_form" style="background: none; width: 750px;">
-			<div class="item1">
+            <span style="color:red">${err }</span>
+            <div class="item1">
             <div>
                 <span>设备编号：</span>
                 <input type="text" class="am-form-field" name="equip_id">&nbsp;&nbsp;

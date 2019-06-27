@@ -12,6 +12,7 @@ public class Loan {
     private Long loan_tel;
     private String loan_ename;
     private String loan_state = "待审核";
+    private String loan_user;
 
     @Override
     public String toString() {
@@ -23,6 +24,7 @@ public class Loan {
                 ", loan_tel=" + loan_tel +
                 ", loan_ename='" + loan_ename + '\'' +
                 ", loan_state='" + loan_state + '\'' +
+                ", loan_user='" + loan_user + '\'' +
                 '}';
     }
 }

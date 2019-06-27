@@ -23,7 +23,8 @@
 	
     <div class="edit_content">
 		<form action="${ctx }/EquipmentServlet?action=add" method="post" id="add_form" style="background: none; width: 750px;">
-			<div class="item1">
+            <span style="color:red">${err }</span>
+            <div class="item1">
             <div>
                 <span>设备编号：</span>
                 <input type="text" class="am-form-field" name="equip_id">&nbsp;&nbsp;
@@ -59,7 +60,7 @@
         <div style="margin-top: 100px">
             <button class="am-btn am-btn-default" type="button" id="add" style="margin-left: 40px">添加</button>
             &nbsp;&nbsp;&nbsp;&nbsp;
-            <button class="am-btn am-btn-default" type="button" id="reset" style="margin-left: 50px" onclick="window.location.href = '${ctx }/admin/add.jsp'">重置</button>
+            <button class="am-btn am-btn-default" type="reset" id="reset" style="margin-left: 50px">重置</button>
         </div>
 		</form>
    </div>

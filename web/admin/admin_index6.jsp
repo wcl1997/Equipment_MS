@@ -29,9 +29,9 @@ scrolling：是否有滚动条
 
     <frameset cols="250,*" frameborder="0" border="0"  framespacing="10">
 
-        <frame src="${pageContext.request.contextPath }/admin/left2.jsp" name="leftFrame"  scrolling="NO">
+        <frame src="${pageContext.request.contextPath }/admin/left6.jsp" name="leftFrame"  scrolling="NO">
 
-        <frame src="${pageContext.request.contextPath }/EquipmentServlet?action=getPageData2&currentPage=1" name="mainFrame" >
+        <frame src="${pageContext.request.contextPath }/EquipmentServlet?action=getEquipmentsMaintain" name="mainFrame" >
 
     </frameset>
 

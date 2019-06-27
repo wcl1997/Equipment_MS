@@ -22,6 +22,12 @@ public class LoanService {
         return allLoans;
     }
 
+    //根据用户查找
+    public List<Loan> getLoansByUser(String user) throws SQLException {
+        List<Loan> allLoans = loanDao.getLoansByUser(user);
+        return allLoans;
+    }
+
     public Loan getLoanByEid(String loan_eid) throws SQLException {
         Loan loan = loanDao.getLoanByEid(loan_eid);
         return loan;
