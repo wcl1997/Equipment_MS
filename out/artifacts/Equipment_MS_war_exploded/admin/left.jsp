@@ -97,7 +97,7 @@
     <li><a href="${pageContext.request.contextPath }/PurchaseServlet?action=getListPurchases" target="mainFrame"><i></i>采购管理</a></li>
     <li><a href="${pageContext.request.contextPath }/AnalyServlet?action=getEquipmentsByCheckM" target="mainFrame"><i></i>维修报废管理</a></li>
     <li><a href="${pageContext.request.contextPath }/EquipmentServlet?action=getPageData&currentPage=1" target="mainFrame"><i></i>设备管理</a></li>
-    <li></i><a href="account.jsp" target="mainFrame"><i></i>用户管理</a></li>
+    <li></i><a href="${pageContext.request.contextPath }/UserServlet?action=getAllAdmins" target="mainFrame"><i></i>用户管理</a></li>
 </ul>
 
 </body>

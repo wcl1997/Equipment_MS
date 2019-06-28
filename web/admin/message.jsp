@@ -12,7 +12,7 @@
 </head>
 <body>
 <h1 style="margin-bottom: 50px;color: #0e90d2">欢迎访客来踩</h1>
-<form action="${ctx }/EquipmentServlet?action=getPageData&currentPage=1" method="post" id="add_form1" style="background: none; width: 1000px;">
+<form action="${ctx }/EquipmentServlet?action=getPageData2&currentPage=1" method="post" id="add_form1" style="background: none; width: 1000px;">
     <span style="margin-left: 600px">欢迎留言：</span>
     <div class="item1 item_desc">
         <textarea  id="desc" name="gdesc" rows="10" cols="140" style="margin-left: 150px"></textarea>
